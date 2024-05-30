@@ -95,7 +95,7 @@ if(isUserExist){
       );
       setLoading(false);
       console.log("login  response = ", response);
-      router.push("/");
+      router.push("/dashboard");
       toastSuccess("Logged in successfully!");
       // setCurrentUser(response?.user)
     } catch (error) {
@@ -123,7 +123,7 @@ if(isUserExist){
       });
       console.log("register-update response ia auccessfull!!!   ");
 
-      router.push("/");
+      router.push("/dashboard");
       toastSuccess("Registered successfully!");
       // setCurrentUser(response?.user)
       createOwnUser(response?.user)
@@ -160,7 +160,7 @@ if(isUserExist){
 
       setLoading(false);
       console.log("Sign out response = ", response);
-
+router.push("/login")
       toastSuccess("Signed out  successfully!");
     } catch (error) {
       toastError("Sign out is Failed");
@@ -179,7 +179,7 @@ if(isUserExist){
       const response = await signInWithPopup(auth, provider);
       setLoading(false);
       console.log("google pop login response = ", response);
-      router.push("/");
+      router.push("/dashboard");
       toastSuccess("Google Pop Logined successfully!");
       // setCurrentUser(response?.user)
       createOwnUser(response?.user)

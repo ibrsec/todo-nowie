@@ -32,7 +32,7 @@ const InProgressTasks = ({ inprogressTodos }) => {
     <>
       <div className="newTasks bg-blue-200 rounded-lg py-2 px-3 h-auto  ">
         <h5 className="text-lg text-slate-600 text-center font-semibold mt-2 ">
-          New Tasks
+          In Progress
         </h5>
 
         <div className=" tasks flex flex-col justify-start gap-3 mb-3 mt-3 pt-12 h-[270px] md:h-[400px]  overflow-auto">
