@@ -5,7 +5,7 @@ import AddTodo from "./components/AddTodoModal";
 import { useTodoContext } from "@/context/TodoProvider";
 
 const DashboardPage = () => {
-    console.log('---------DATE =',new Date().toLocaleDateString("tr-TR"));
+    // console.log('---------DATE =',new Date().toLocaleDateString("tr-TR"));
   const [openAddTodoModal, setOpenAddTodoModal] = useState(false)
   const {getTodos} = useTodoContext();
 

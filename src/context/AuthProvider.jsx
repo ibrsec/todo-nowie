@@ -33,11 +33,11 @@ const AuthProvider = ({ children }) => {
 
     try {
       const response = await fetch(url);
-      console.log("get all users response = ", response);
+      // console.log("get all users response = ", response);
       toastSuccess("get all users  successfully");
       const bodyJson = await response.json();
       return bodyJson;
-      console.log("bodyJson", bodyJson);
+      // console.log("bodyJson", bodyJson);
     } catch (error) {
       toastError("get all users  is failed!");
       console.log("create Own user = ", error);
@@ -51,7 +51,7 @@ const AuthProvider = ({ children }) => {
       .map((item) => item?.userId)
       .some((item) => item == currentUser.uid);
     if (isUserExist) {
-      console.log("User is already exist!!!");
+      // console.log("User is already exist!!!");
       return;
     }
 
@@ -61,7 +61,7 @@ const AuthProvider = ({ children }) => {
       email: currentUser.email,
       userId: currentUser.uid,
     };
-    console.log("body", body);
+    // console.log("body", body);
 
     try {
       const response = await fetch(url, {
@@ -71,10 +71,10 @@ const AuthProvider = ({ children }) => {
         },
         body: JSON.stringify({ ...body }),
       });
-      console.log("create Own user response = ", response);
+      // console.log("create Own user response = ", response);
       toastSuccess("Created own user successfully");
       const bodyJson = await response.json();
-      console.log("bodyJson", bodyJson);
+      // console.log("bodyJson", bodyJson);
     } catch (error) {
       toastError("Createing own user is failed!");
       console.log("create Own user = ", error);
@@ -91,7 +91,7 @@ const AuthProvider = ({ children }) => {
         user.password
       );
       setLoading(false);
-      console.log("login  response = ", response);
+      // console.log("login  response = ", response);
       router.push("/dashboard");
       toastSuccess("Logged in successfully!");
       // setCurrentUser(response?.user)
@@ -112,13 +112,13 @@ const AuthProvider = ({ children }) => {
         user.password
       );
       setLoading(false);
-      console.log("register response = ", response);
+      // console.log("register response = ", response);
 
       const updateResponse = await updateProfile(auth.currentUser, {
         displayName: user.username,
         photoURL: user.imageUrl,
       });
-      console.log("register-update response ia auccessfull!!!   ");
+      // console.log("register-update response ia auccessfull!!!   ");
 
       router.push("/dashboard");
       toastSuccess("Registered successfully!");
@@ -138,7 +138,7 @@ const AuthProvider = ({ children }) => {
       const response = await sendPasswordResetEmail(auth, email);
 
       setLoading(false);
-      console.log("send reset email response = ", response);
+      // console.log("send reset email response = ", response);
 
       toastSuccess("Sended reset email successfully!");
     } catch (error) {
@@ -155,7 +155,7 @@ const AuthProvider = ({ children }) => {
       const response = await signOut(auth);
 
       setLoading(false);
-      console.log("Sign out response = ", response);
+      // console.log("Sign out response = ", response);
       router.push("/login");
       toastSuccess("Signed out  successfully!");
     } catch (error) {
@@ -174,7 +174,7 @@ const AuthProvider = ({ children }) => {
     try {
       const response = await signInWithPopup(auth, provider);
       setLoading(false);
-      console.log("google pop login response = ", response);
+      // console.log("google pop login response = ", response);
       router.push("/dashboard");
       toastSuccess("Google Pop Logined successfully!");
       // setCurrentUser(response?.user)
@@ -191,10 +191,10 @@ const AuthProvider = ({ children }) => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setCurrentUser(user);
-        console.log("logged in observer le user => ", user);
+        // console.log("logged in observer le user => ", user);
         sessionStorage.setItem("nowieUser", JSON.stringify(user));
       } else {
-        console.log("logged out observer le");
+        // console.log("logged out observer le");
         setCurrentUser(false);
         sessionStorage.setItem("nowieUser", JSON.stringify(false));
       }

@@ -6,9 +6,7 @@ import {
   DialogTitle,
   Transition,
   TransitionChild,
-} from "@headlessui/react";
-import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
-import { useAuthContext } from "@/context/AuthProvider";
+} from "@headlessui/react"; 
 import { useTodoContext } from "@/context/TodoProvider";
 
 export default function EditTodoModal({ open, setOpen, todo }) {
@@ -21,7 +19,7 @@ export default function EditTodoModal({ open, setOpen, todo }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(editTodoInput);
+    // console.log(editTodoInput);
     putTask(todo?.id, {taskName:editTodoInput})
     setEditTodoInput("");
     setOpen(false)

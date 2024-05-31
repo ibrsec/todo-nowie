@@ -29,8 +29,8 @@ export default function Navbar() {
   const router = useRouter();
   const pathName = usePathname();
   const { currentUser, logOutGoogle } = useAuthContext();
-  console.log("currentUser", currentUser);
-  console.log("currentUser?.apiKey", currentUser?.apiKey);
+  // console.log("currentUser", currentUser);
+  // console.log("currentUser?.apiKey", currentUser?.apiKey);
 
 const [activePath,setActivePath] = useState(pathName);
 
@@ -38,7 +38,7 @@ const [activePath,setActivePath] = useState(pathName);
 useEffect(()=> {
   setActivePath(pathName);
 })
-console.log(activePath);
+// console.log(activePath);
 navigation = navigation.map(item => {
 
   if(item.href === activePath) {

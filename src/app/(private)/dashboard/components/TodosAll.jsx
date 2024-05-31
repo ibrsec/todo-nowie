@@ -5,7 +5,7 @@ import { useTodoContext } from "@/context/TodoProvider";
 import { useAuthContext } from "@/context/AuthProvider";
 
 const TodosAll = () => {
-  const { allTodos, getTodos } = useTodoContext();
+  const { allTodos } = useTodoContext();
   const { currentUser } = useAuthContext();
 
   const userTodos = allTodos.filter((todo) => todo.userId === currentUser.uid);
@@ -14,7 +14,7 @@ const TodosAll = () => {
     return new Date(todo?.createdAt).toLocaleDateString("tr-TR") ===
       new Date().toLocaleDateString("tr-TR");
   });
-  console.log("todays todos = ",todaysTodos);
+  // console.log("todays todos = ",todaysTodos);
 
   const newlyTodos = todaysTodos.filter((todo) => todo.status === 0);
   const inprogressTodos = todaysTodos.filter((todo) => todo.status === 1);

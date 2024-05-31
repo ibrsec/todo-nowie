@@ -26,7 +26,7 @@ const LoginPage = () => {
   };
   const handlesubmit = (e) => {
     e.preventDefault();
-    console.log(inputInfos);
+    //console.log(inputInfos);
     loginGoogle(inputInfos);
     setInputinfos({ username: "", imageUrl: "", email: "", password: "" });
   };
@@ -35,10 +35,10 @@ const copytoClipboard = (text) => {
 
  
 navigator.clipboard.writeText(text).then(function() {
-  console.log('Async: Copying to clipboard was successful!');
+  //console.log('Async: Copying to clipboard was successful!');
   toastInfo("Email is copied to clipboard successfully")
 }, function(err) {
-  console.error('Async: Could not copy text: ', err);
+ // console.error('Async: Could not copy text: ', err);
 });
 }
 

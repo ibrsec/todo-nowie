@@ -22,7 +22,7 @@ const RegisterPage = () => {
   };
   const handlesubmit = (e) => {
     e.preventDefault();
-    console.log(inputInfos);
+    // console.log(inputInfos);
     registerGoogle(inputInfos);
     setInputinfos({ username: "", imageUrl: "", email: "", password: "" });
   };

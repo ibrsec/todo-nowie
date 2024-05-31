@@ -18,10 +18,10 @@ const TodoProvider = ({ children }) => {
 
       const response = await fetch(baseUrl);
 
-      console.log("get Todos =response = ", response);
+      // console.log("get Todos =response = ", response);
       const resposneJson = await response.json();
       setAllTodos(resposneJson);
-      toastSuccess("Getted Todos Successfully");
+      // toastSuccess("Getted Todos Successfully");
     } catch (error) {
       console.log("get todos error=", error);
       toastError("Get todos is failed");
@@ -36,7 +36,7 @@ const TodoProvider = ({ children }) => {
       status: 0,
       userId: currentUser?.uid,
     };
-    console.log("body", body);
+    // console.log("body", body);
 
     try {
       const response = await fetch(baseUrl, {
@@ -46,10 +46,10 @@ const TodoProvider = ({ children }) => {
         },
         body: JSON.stringify({ ...body }),
       });
-      console.log("Post a new task response = ", response);
+      // console.log("Post a new task response = ", response);
       toastSuccess("Posted a new task successfully");
       const bodyJson = await response.json();
-      console.log("bodyJson", bodyJson);
+      // console.log("bodyJson", bodyJson);
       getTodos();
     } catch (error) {
       toastError("Post a new task is failed!");
@@ -59,7 +59,7 @@ const TodoProvider = ({ children }) => {
 
   const putTask = async (id,taskObj) => {
  
-    console.log("taskObj", taskObj);
+    // console.log("taskObj", taskObj);
 
     try {
       const response = await fetch(baseUrl+"/"+id, {
@@ -69,10 +69,10 @@ const TodoProvider = ({ children }) => {
         },
         body: JSON.stringify({ ...taskObj }),
       });
-      console.log("PUT task response = ", response);
+      // console.log("PUT task response = ", response);
       toastSuccess("PUTed task successfully");
       const bodyJson = await response.json();
-      console.log("put bodyJson", bodyJson);
+      // console.log("put bodyJson", bodyJson);
       getTodos();
     } catch (error) {
       toastError("PUT task is failed!");
@@ -89,7 +89,7 @@ const TodoProvider = ({ children }) => {
         //   "Content-type": "application/json",
         // }
       });
-      console.log("DELETE task response = ", response);
+      // console.log("DELETE task response = ", response);
       toastSuccess("DELETE task successfully"); 
       getTodos();
     } catch (error) {

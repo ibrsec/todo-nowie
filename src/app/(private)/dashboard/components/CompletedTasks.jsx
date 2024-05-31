@@ -1,5 +1,4 @@
-import ChevronL from "@/assets/icons/ChevronL";
-import ChevronR from "@/assets/icons/ChevronR";
+import ChevronL from "@/assets/icons/ChevronL"; 
 import DeleteIcon from "@/assets/icons/DeleteIcon";
 import EditIcon from "@/assets/icons/EditIcon";
 import ToolTip from "@/components/Tooltip";

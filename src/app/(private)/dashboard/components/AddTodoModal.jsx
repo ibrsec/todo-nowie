@@ -19,7 +19,7 @@ export default function AddTodo({ open, setOpen }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(newTodoInput);
+    // console.log(newTodoInput);
 
     // !newTodoInput &&   toastInfo("Please enter a task name");
     postNewTask(currentUser, newTodoInput)

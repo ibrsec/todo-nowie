@@ -1,22 +1,20 @@
 "use client";
-import { useTodoContext } from "@/context/TodoProvider";
-import ChevronR from "@/assets/icons/ChevronR";
+import { useTodoContext } from "@/context/TodoProvider"; 
 
 import React, { useEffect } from "react";
-import NewStepInput from "../components/NewStepInput";
-import EditIcon from "@/assets/icons/EditIcon";
+import NewStepInput from "../components/NewStepInput"; 
 import DeleteIcon from "@/assets/icons/DeleteIcon";
 
 const DetailTodo = ({ params }) => {
-  console.log("detaila page", { params });
+  // console.log("detaila page", { params });
 
   const { allTodos, getTodos,putTask,deleteTask } = useTodoContext();
   useEffect(() => {
     getTodos();
   }, []);
-  console.log(allTodos);
+  // console.log(allTodos);
   const selectedTodo = allTodos?.filter((todo) => todo.id === params.id)[0];
-  console.log("selectedtodo = ", selectedTodo);
+  // console.log("selectedtodo = ", selectedTodo);
 
   return (
     <div className="container mx-auto">

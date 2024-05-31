@@ -29,10 +29,10 @@ const OldTodosPage = () => {
     acc[category].push(current);
     return acc;
   }, {});
-  console.log("allTodosDateCategory = ", allTodosDateCategory);
+  // console.log("allTodosDateCategory = ", allTodosDateCategory);
 
   const [selectedDate, setSelectedDate] = useState("");
-  console.log(selectedDate);
+  // console.log(selectedDate);
 
   const selectedTasks = allTodosDateCategory[selectedDate];
 

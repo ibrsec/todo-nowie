@@ -9,7 +9,7 @@ const NewStepInput = ({todo}) => {
 const {putTask,} = useTodoContext();
   const handleSubmit = (e)=>{
     e.preventDefault();
-    console.log(stepInput);
+    // console.log(stepInput);
     // console.log(todo);
     // console.log("id=",todo?.id);
     // console.log("description=",todo?.description);
