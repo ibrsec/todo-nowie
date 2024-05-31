@@ -16,7 +16,7 @@ const SelectedTasksComp = ({ selectedDate, selectedTasks }) => {
           Tasks of {selectedDate || "[please select a date]"}
         </h5>
 
-        <div className=" tasks flex flex-col justify-start gap-3 mb-3 mt-3 pt-12 ps-10 h-[270px] md:h-[400px]  ">
+        <div className=" tasks flex flex-col justify-start gap-3 mb-3 mt-3 pt-12 ps-10 h-[270px] md:h-[400px]  overflow-x-hidden overflow-y-auto  ">
           <div>
             <h6 className="font-semibold text-red-950">Newly Todos</h6>
             {newlyTodos?.length > 0 ? (

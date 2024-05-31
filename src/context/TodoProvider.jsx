@@ -9,7 +9,7 @@ const TodoProvider = ({ children }) => {
   const [allTodos, setAllTodos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const baseUrl = "https://665823725c361705264708f6.mockapi.io/todos";
+  const baseUrl = process.env.NEXT_PUBLIC_mock_BASEURL +"/todos";
 
   const getTodos = async () => {
     try {

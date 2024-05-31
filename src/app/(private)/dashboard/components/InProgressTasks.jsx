@@ -32,7 +32,7 @@ const InProgressTasks = ({ inprogressTodos }) => {
           In Progress
         </h5>
 
-        <div className=" tasks flex flex-col justify-start gap-3 mb-3 mt-3 pt-12 h-[270px] md:h-[400px]   ">
+        <div className=" tasks flex flex-col justify-start gap-3 mb-3 mt-3 pt-12 h-[270px] md:h-[400px]  overflow-x-hidden overflow-y-auto   ">
           {inprogressTodos?.length > 0 ? (
             inprogressTodos?.map((todo) => (
               <div key={todo?.id} className="task flex items-center ">

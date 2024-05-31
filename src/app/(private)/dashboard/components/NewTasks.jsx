@@ -28,10 +28,10 @@ const NewTasks = ({ newlyTodos }) => {
           New Tasks
         </h5>
 
-        <div className=" tasks flex flex-col justify-start gap-3 mb-3 mt-3 pt-12 h-[270px] md:h-[400px]   ">
+        <div className=" tasks flex flex-col justify-start gap-3 mb-3 mt-3 pt-12 h-[270px] md:h-[400px] overflow-x-hidden overflow-y-auto  ">
           {newlyTodos?.length > 0 ? (
             newlyTodos?.map((todo) => (
-              <span key={todo?.id} className="task flex items-center  ">
+              <span key={todo?.id} className="task flex items-center   ">
                 <div className="flex-grow ">
                 <ToolTip tooltip={"Steps: " + todo?.description.map(item=> item.stepName).join(", ")}>
                   <span className=" text-slate-600 ps-4 capitalize w-[80%] overflow-hidden text-[13px] md:text-[14px] lg:text-[16px]  ">

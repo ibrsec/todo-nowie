@@ -29,7 +29,7 @@ const AuthProvider = ({ children }) => {
   const router = useRouter();
 
   const getAllUsers = async (currentUser) => {
-    const url = "https://665823725c361705264708f6.mockapi.io/users";
+    const url = process.env.NEXT_PUBLIC_mock_BASEURL +"/users";
 
     try {
       const response = await fetch(url);
@@ -45,7 +45,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const createOwnUser = async (currentUser) => {
-    const url = "https://665823725c361705264708f6.mockapi.io/users";
+    const url =process.env.NEXT_PUBLIC_mock_BASEURL +"/users";
     const allUsers = await getAllUsers();
     const isUserExist = allUsers
       .map((item) => item?.userId)
