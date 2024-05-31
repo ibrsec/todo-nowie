@@ -99,6 +99,9 @@ navigator.clipboard.writeText(text).then(function() {
                   <span className="text-slate-500 cursor-pointer text-sm" onClick={()=>router.push("/register")}>Sign up</span>
                 </div>
                 <div className="mt-2 flex items-center justify-between">
+                  <span className="text-green-500 cursor-pointer text-sm">Incelemek icin hesap bilgileri:</span>
+                </div>
+                <div className="mt-2 flex items-center justify-between">
 
                   <ToolTip tooltip="Click for copy" >
                   <span className="text-slate-500 cursor-pointer text-sm" onClick={()=>copytoClipboard("test@test.com") }>test@test.com</span>
