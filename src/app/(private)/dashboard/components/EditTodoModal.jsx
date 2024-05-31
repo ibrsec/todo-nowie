@@ -24,7 +24,7 @@ export default function EditTodoModal({ open, setOpen, todo }) {
     console.log(editTodoInput);
     putTask(todo?.id, {taskName:editTodoInput})
     setEditTodoInput("");
-
+    setOpen(false)
   }
   return (
     <Transition show={open}>
@@ -56,7 +56,7 @@ export default function EditTodoModal({ open, setOpen, todo }) {
                   <div className="sm:flex sm:items-start">
                     <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
                       <img
-                        src="/images/addTodo.png"
+                        src="/images/editTodo.png"
                         width={300}
                         height={300}
                         alt="addtodo"
@@ -98,8 +98,7 @@ export default function EditTodoModal({ open, setOpen, todo }) {
                 <div className="bg-violet-200 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                   <button
                     type="submit"
-                    className="inline-flex w-full justify-center rounded-md bg-violet-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-500 sm:ml-3 sm:w-auto"
-                    onClick={() => setOpen(false)}
+                    className="inline-flex w-full justify-center rounded-md bg-violet-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-500 sm:ml-3 sm:w-auto" 
                   >
                     EDIT
                   </button>

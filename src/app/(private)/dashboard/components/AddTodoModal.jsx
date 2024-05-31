@@ -10,6 +10,7 @@ import {
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import { useAuthContext } from "@/context/AuthProvider";
 import { useTodoContext } from "@/context/TodoProvider";
+import { toastInfo } from "@/helper/ToastifyNotify";
 
 export default function AddTodo({ open, setOpen }) {
   const [newTodoInput, setNewTodoInput] = useState("");
@@ -19,8 +20,11 @@ export default function AddTodo({ open, setOpen }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(newTodoInput);
+
+    // !newTodoInput &&   toastInfo("Please enter a task name");
     postNewTask(currentUser, newTodoInput)
     setNewTodoInput("");
+    setOpen(false)
 
   }
   return (
@@ -96,7 +100,7 @@ export default function AddTodo({ open, setOpen }) {
                   <button
                     type="submit"
                     className="inline-flex w-full justify-center rounded-md bg-violet-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-500 sm:ml-3 sm:w-auto"
-                    onClick={() => setOpen(false)}
+                    // onClick={() => newTodoInput && setOpen(false)}
                   >
                     OK
                   </button>

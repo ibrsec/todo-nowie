@@ -6,22 +6,22 @@ import ToolTip from "@/components/Tooltip";
 import { useTodoContext } from "@/context/TodoProvider";
 import EditTodoModal from "./EditTodoModal";
 import { useState } from "react";
+import DetailIcon from "@/assets/icons/DetailIcon";
+import { useRouter } from "next/navigation";
 const CompletedTasks = ({ completedTodos }) => {
   const [openEditModal, setOpenEditModal] = useState(false);
   const [todoForEdit, setTodoForEdit] = useState({});
-  const {putTask, deleteTask} = useTodoContext();
+  const { putTask, deleteTask } = useTodoContext();
+  const router = useRouter();
   const handleChevronL = (id) => {
-
-
-    putTask(id,{status:1})
-  }
+    putTask(id, { status: 1 });
+  };
 
   const handleEdit = (todo) => {
-
-    setOpenEditModal(true)
+    setOpenEditModal(true);
     setTodoForEdit(todo);
-    // putTask(id,{taskname:""})  
-  }
+    // putTask(id,{taskname:""})
+  };
 
   return (
     <>
@@ -30,26 +30,53 @@ const CompletedTasks = ({ completedTodos }) => {
           Completed Tasks
         </h5>
 
-        <div className=" tasks flex flex-col justify-start gap-3 mb-3 mt-3 pt-12 h-[270px] md:h-[400px]  overflow-auto">
+        <div className=" tasks flex flex-col justify-start gap-3 mb-3 mt-3 pt-12 h-[270px] md:h-[400px]  ">
           {completedTodos?.length > 0 ? (
             completedTodos?.map((todo) => (
-              <div className="task flex items-center ">
-                <span className="flex-grow text-green-600 ps-4 text-decoration-line-through  capitalize">
-                  {todo?.taskName}
-                </span>
-                <div flex items-center gap-3>
+              <div key={todo?.id} className="task flex items-center ">
+                <div className="flex-grow">
+                  <ToolTip
+                    tooltip={
+                      "Steps: " +
+                      todo?.description.map((item) => item.stepName).join(", ")
+                    }
+                  >
+                    <span className=" text-green-600 ps-4 text-decoration-line-through  capitalize w-[80%] overflow-hidden text-[13px] md:text-[14px] lg:text-[16px] ">
+                      {todo?.taskName}
+                    </span>
+                  </ToolTip>
+                </div>
+                <div className="flex items-center">
                   <ToolTip tooltip="Make inprogress">
-                    <button className="rounded-full p-1 hover:bg-white active:bg-slate-100" onClick={()=>handleChevronL(todo?.id)}>
+                    <button
+                      className="rounded-full p-1 hover:bg-white active:bg-slate-100"
+                      onClick={() => handleChevronL(todo?.id)}
+                    >
                       <ChevronL className="" />
                     </button>
                   </ToolTip>
 
-                  <button className="rounded-full p-1 hover:bg-white active:bg-slate-100" onClick={()=>handleEdit(todo)}>
+                  <button
+                    className="rounded-full p-1 hover:bg-white active:bg-slate-100"
+                    onClick={() => handleEdit(todo)}
+                  >
                     <EditIcon className="" />
                   </button>
-                  <button className="rounded-full p-1 hover:bg-white active:bg-slate-100" onClick={()=>deleteTask(todo?.id)}>
+                  <button
+                    className="rounded-full p-1 hover:bg-white active:bg-slate-100"
+                    onClick={() => deleteTask(todo?.id)}
+                  >
                     <DeleteIcon />
                   </button>
+
+                  <ToolTip tooltip="Detail Page">
+                    <button
+                      className="rounded-full p-1 hover:bg-white active:bg-slate-100"
+                      onClick={() => router.push("/detail/" + todo?.id)}
+                    >
+                      <DetailIcon className="" />
+                    </button>
+                  </ToolTip>
                 </div>
               </div>
             ))
@@ -61,9 +88,13 @@ const CompletedTasks = ({ completedTodos }) => {
         </div>
       </div>
 
-      <EditTodoModal open={openEditModal} setOpen={setOpenEditModal} todo={todoForEdit}/>
+      <EditTodoModal
+        open={openEditModal}
+        setOpen={setOpenEditModal}
+        todo={todoForEdit}
+      />
     </>
   );
 };
 
-export default CompletedTasks
+export default CompletedTasks;

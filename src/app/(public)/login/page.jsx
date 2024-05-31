@@ -1,11 +1,15 @@
 "use client";
 
 import GoogleIcon from "@/assets/icons/GoogleIcon";
+import ToolTip from "@/components/Tooltip";
 import { useAuthContext } from "@/context/AuthProvider";
 import { toastInfo } from "@/helper/ToastifyNotify";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+ 
 
 const LoginPage = () => {
+  const router = useRouter();
   const [inputInfos, setInputinfos] = useState({
     
     email: "",
@@ -26,6 +30,18 @@ const LoginPage = () => {
     loginGoogle(inputInfos);
     setInputinfos({ username: "", imageUrl: "", email: "", password: "" });
   };
+
+const copytoClipboard = (text) => {
+
+ 
+navigator.clipboard.writeText(text).then(function() {
+  console.log('Async: Copying to clipboard was successful!');
+  toastInfo("Email is copied to clipboard successfully")
+}, function(err) {
+  console.error('Async: Could not copy text: ', err);
+});
+}
+
   return (
     <div className="min-h-screen bg-cover bg-center bg-fixed xl:bg-[url('https://picsum.photos/1920/1080')] lg:bg-[url('https://picsum.photos/1024/1080')] md:bg-[url('https://picsum.photos/768/600')] sm:bg-[url('https://picsum.photos/640/400')] bg-[url('https://picsum.photos/500/600')]  py-6 flex flex-col justify-center sm:py-12">
       <div className="relative py-3 sm:max-w-xl sm:mx-auto">
@@ -78,9 +94,20 @@ const LoginPage = () => {
                     Password *
                   </label>
                 </div>
-                <div className="mt-2">
-                  <span className="text-slate-500 cursor-pointer" onClick={()=>inputInfos.email ? sendResetEmail(inputInfos.email) : toastInfo("First enter a email")}>Forgot Password</span>
+                <div className="mt-2 flex items-center justify-between">
+                  <span className="text-slate-500 cursor-pointer text-sm" onClick={()=>inputInfos.email ? sendResetEmail(inputInfos.email) : toastInfo("First enter a email")}>Forgot Password</span>
+                  <span className="text-slate-500 cursor-pointer text-sm" onClick={()=>router.push("/register")}>Sign up</span>
                 </div>
+                <div className="mt-2 flex items-center justify-between">
+
+                  <ToolTip tooltip="Click for copy" >
+                  <span className="text-slate-500 cursor-pointer text-sm" onClick={()=>copytoClipboard("test@test.com") }>test@test.com</span>
+                  </ToolTip>
+                  <ToolTip tooltip="Click for copy" >
+                  <span className="text-slate-500 cursor-pointer text-sm" onClick={()=> copytoClipboard("test123") }>test123</span>
+                  </ToolTip>
+                </div>
+
                 <div className="relative text-center">
                   <button
                     type="submit"
