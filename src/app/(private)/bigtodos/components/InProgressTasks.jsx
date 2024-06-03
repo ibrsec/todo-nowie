@@ -82,7 +82,7 @@ const InProgressTasks = ({ path,inprogressTodos }) => {
                   <ToolTip tooltip="Detail Page">
                     <button
                       className="rounded-full p-1 hover:bg-white active:bg-slate-100"
-                      onClick={() => router.push("/detail/" + todo?.id)}
+                      onClick={() => router.push("/bigtodos/detail/" + todo?.id)}
                     >
                       <DetailIcon className="" />
                     </button>

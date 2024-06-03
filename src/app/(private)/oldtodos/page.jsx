@@ -12,8 +12,9 @@ function classNames(...classes) {
 const OldTodosPage = () => {
   const { allTodos, getTodos } = useTodoContext();
   const { currentUser } = useAuthContext();
+  const path = "todos";
   useEffect(() => {
-    getTodos();
+    getTodos(path);
   }, []);
   const userTodos = allTodos.filter((todo) => todo.userId === currentUser.uid);
 

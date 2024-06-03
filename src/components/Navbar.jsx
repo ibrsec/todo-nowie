@@ -19,6 +19,7 @@ import { usePathname, useRouter } from "next/navigation";
 let navigation = [
   { name: "Dashboard", href: "/dashboard", current: true },
   { name: "Old Todos", href: "/oldtodos", current: false },
+  { name: "Big Todos", href: "/bigtodos", current: false },
 ];
 
 function classNames(...classes) {
@@ -53,7 +54,7 @@ navigation = navigation.map(item => {
 
 
   return (
-    <Disclosure as="nav" className="bg-violet-600">
+    <Disclosure as="nav" className="bg-violet-600" data-test="navbar">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -64,7 +65,8 @@ navigation = navigation.map(item => {
                 {
               currentUser &&
               
-                <DisclosureButton className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                <DisclosureButton className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                data-test="navlinks-hamburger">
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
                   {open ? (
@@ -81,6 +83,7 @@ navigation = navigation.map(item => {
                     className="h-8 w-auto"
                     src="/images/logo.png"
                     alt="Your Company"
+                    data-test="navbar-logo"
                   />
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
@@ -97,6 +100,7 @@ navigation = navigation.map(item => {
                             "rounded-md px-3 py-2 text-sm font-medium"
                           )}
                           aria-current={item.current ? "page" : undefined}
+                          data-test={"navbar-links-"+item.name}
                         >
                           {item.name}
                         </Link>
@@ -110,7 +114,7 @@ navigation = navigation.map(item => {
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" data-test="navbar-profile">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
                       <Image
@@ -144,6 +148,7 @@ navigation = navigation.map(item => {
                                   focus ? "bg-gray-100" : "",
                                   "block px-4 py-2 text-sm text-gray-700"
                                 )}
+                                data-test="login-link"
                               >
                                 Login
                               </Link>
@@ -157,6 +162,7 @@ navigation = navigation.map(item => {
                                   focus ? "bg-gray-100" : "",
                                   "block px-4 py-2 text-sm text-gray-700"
                                 )}
+                                data-test="register-link"
                               >
                                 Register
                               </Link>

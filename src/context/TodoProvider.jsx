@@ -9,14 +9,15 @@ const TodoProvider = ({ children }) => {
   const [allTodos, setAllTodos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const baseUrl = process.env.NEXT_PUBLIC_mock_BASEURL +"/todos";
+  const baseUrl = process.env.NEXT_PUBLIC_mock_BASEURL;
+  //  +"/todos";
 
-  const getTodos = async () => {
+  const getTodos = async (path) => {
     try {
       setLoading(true);
       setError(false);
 
-      const response = await fetch(baseUrl);
+      const response = await fetch(`${baseUrl}/${path}`);
 
       // console.log("get Todos =response = ", response);
       const resposneJson = await response.json();
@@ -28,7 +29,7 @@ const TodoProvider = ({ children }) => {
     }
   };
 
-  const postNewTask = async (currentUser,newTask) => {
+  const postNewTask = async (path,currentUser,newTask) => {
 
     const body = {
       createdAt: new Date(),
@@ -39,7 +40,7 @@ const TodoProvider = ({ children }) => {
     // console.log("body", body);
 
     try {
-      const response = await fetch(baseUrl, {
+      const response = await fetch(`${baseUrl}/${path}`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -50,19 +51,19 @@ const TodoProvider = ({ children }) => {
       toastSuccess("Posted a new task successfully");
       const bodyJson = await response.json();
       // console.log("bodyJson", bodyJson);
-      getTodos();
+      getTodos(path);
     } catch (error) {
       toastError("Post a new task is failed!");
       console.log("Post a new task = ", error);
     }
   };
 
-  const putTask = async (id,taskObj) => {
+  const putTask = async (path,id,taskObj) => {
  
     // console.log("taskObj", taskObj);
 
     try {
-      const response = await fetch(baseUrl+"/"+id, {
+      const response = await fetch(`${baseUrl}/${path}/${id}`, {
         method: "PUT",
         headers: {
           "Content-type": "application/json",
@@ -73,17 +74,17 @@ const TodoProvider = ({ children }) => {
       toastSuccess("PUTed task successfully");
       const bodyJson = await response.json();
       // console.log("put bodyJson", bodyJson);
-      getTodos();
+      getTodos(path);
     } catch (error) {
       toastError("PUT task is failed!");
       console.log("PUT task = ", error);
     }
   };
-  const deleteTask = async (id) => {
+  const deleteTask = async (path,id) => {
   
 
     try {
-      const response = await fetch(baseUrl+"/"+id, {
+      const response = await fetch(`${baseUrl}/${path}/${id}`, {
         method: "DELETE",
         // headers: {
         //   "Content-type": "application/json",
@@ -91,7 +92,7 @@ const TodoProvider = ({ children }) => {
       });
       // console.log("DELETE task response = ", response);
       toastSuccess("DELETE task successfully"); 
-      getTodos();
+      getTodos(path);
     } catch (error) {
       toastError("DELETE task is failed!");
       console.log("DELETE task = ", error);

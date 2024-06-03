@@ -12,7 +12,7 @@ import { useAuthContext } from "@/context/AuthProvider";
 import { useTodoContext } from "@/context/TodoProvider";
 import { toastInfo } from "@/helper/ToastifyNotify";
 
-export default function AddTodo({ open, setOpen }) {
+export default function AddTodo({ path,open, setOpen }) {
   const [newTodoInput, setNewTodoInput] = useState("");
   const {currentUser} = useAuthContext();
   const{postNewTask} = useTodoContext();
@@ -22,7 +22,7 @@ export default function AddTodo({ open, setOpen }) {
     // console.log(newTodoInput);
 
     // !newTodoInput &&   toastInfo("Please enter a task name");
-    postNewTask("todos",currentUser, newTodoInput)
+    postNewTask(path,currentUser, newTodoInput)
     setNewTodoInput("");
     setOpen(false)
 

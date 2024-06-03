@@ -13,6 +13,7 @@ import {
 } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { GoogleAuthProvider } from "firebase/auth";
+// import { all } from "cypress/types/bluebird";
 
 const { createContext, useContext, useState, useEffect } = require("react");
 
@@ -29,10 +30,10 @@ const AuthProvider = ({ children }) => {
   const router = useRouter();
 
   const getAllUsers = async (currentUser) => {
-    const url = process.env.NEXT_PUBLIC_mock_BASEURL +"/users";
+    const url = process.env.NEXT_PUBLIC_mock_BASEURL +"/bigTodos";
 
     try {
-      const response = await fetch(url);
+      const response = await fetch(url+"/1");
       // console.log("get all users response = ", response);
       toastSuccess("get all users  successfully");
       const bodyJson = await response.json();
@@ -45,27 +46,42 @@ const AuthProvider = ({ children }) => {
   };
 
   const createOwnUser = async (currentUser) => {
-    const url =process.env.NEXT_PUBLIC_mock_BASEURL +"/users";
-    const allUsers = await getAllUsers();
-    const isUserExist = allUsers
-      .map((item) => item?.userId)
-      .some((item) => item == currentUser.uid);
+    // {
+    //   "createdAt": "2024-05-31T11:14:32.307Z",
+    //   "username": "testuser",
+    //   "email": "testuser@test.com",
+    //   "userId": "1y4QR8u7aFfVZWPfZ3aHPDPXG9C3",
+    //   "id": "15"
+    // }
+    const url =process.env.NEXT_PUBLIC_mock_BASEURL +"/bigTodos";
+    const userInfos = await getAllUsers();
+    // const userInfos = allBigTodos.filter(item=>item.taskName === "user storage")[0];
+
+    const isUserExist = userInfos?.description
+      .some((item) => item.userId == currentUser.uid);
     if (isUserExist) {
       // console.log("User is already exist!!!");
       return;
     }
 
     const body = {
-      createdAt: new Date(),
-      username: currentUser.displayName,
-      email: currentUser.email,
-      userId: currentUser.uid,
+      ...userInfos,
+      description:[
+        ...userInfos.description,
+        {
+          createdAt: new Date(),
+          username: currentUser.displayName,
+          email: currentUser.email,
+          userId: currentUser.uid,
+
+        }
+      ]
     };
     // console.log("body", body);
 
     try {
-      const response = await fetch(url, {
-        method: "POST",
+      const response = await fetch(url+"/"+1, {
+        method: "PUT",
         headers: {
           "Content-type": "application/json",
         },

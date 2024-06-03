@@ -49,7 +49,7 @@ navigator.clipboard.writeText(text).then(function() {
         <div className="relative px-4 py-10 bg-violet-200 shadow-lg sm:rounded-3xl sm:p-20">
           <div className="max-w-md mx-auto">
             <div>
-              <h1 className="text-2xl font-semibold text-violet-700">Login</h1>
+              <h1 className="text-2xl font-semibold text-violet-700" data-test="login-header">Login</h1>
             </div>
             <div className="divide-y divide-gray-200">
               <form
@@ -67,6 +67,7 @@ navigator.clipboard.writeText(text).then(function() {
                     placeholder="Image url"
                     value={inputInfos.email}
                     onChange={handleChange}
+                    data-test="login-email-input"
                   />
                   <label
                     htmlFor="password"
@@ -86,6 +87,7 @@ navigator.clipboard.writeText(text).then(function() {
                     placeholder="Image url"
                     value={inputInfos.password}
                     onChange={handleChange}
+                    data-test="login-password-input"
                   />
                   <label
                     htmlFor="password"
@@ -96,7 +98,7 @@ navigator.clipboard.writeText(text).then(function() {
                 </div>
                 <div className="mt-2 flex items-center justify-between">
                   <span className="text-slate-500 cursor-pointer text-sm" onClick={()=>inputInfos.email ? sendResetEmail(inputInfos.email) : toastInfo("First enter a email")}>Forgot Password</span>
-                  <span className="text-slate-500 cursor-pointer text-sm" onClick={()=>router.push("/register")}>Sign up</span>
+                  <span className="text-slate-500 cursor-pointer text-sm" onClick={()=>router.push("/register")} data-test="login-signup-button">Sign up</span>
                 </div>
                 <div className="mt-2 flex items-center justify-between">
                   <span className="text-green-500 cursor-pointer text-sm">Incelemek icin hesap bilgileri:</span>
@@ -114,7 +116,7 @@ navigator.clipboard.writeText(text).then(function() {
                 <div className="relative text-center">
                   <button
                     type="submit"
-                    className="w-[280px] text-md  bg-violet-500 text-white hover:bg-violet-950  transition-all rounded-md px-2 py-3 "
+                    className="w-[280px] text-md  bg-violet-500 text-white hover:bg-violet-950  transition-all rounded-md px-2 py-3 " data-test="login-submit"
                   >
                     Submit
                   </button>

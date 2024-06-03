@@ -7,13 +7,13 @@ import EditTodoModal from "./EditTodoModal";
 import { useState } from "react";
 import DetailIcon from "@/assets/icons/DetailIcon";
 import { useRouter } from "next/navigation";
-const NewTasks = ({ newlyTodos }) => {
+const NewTasks = ({ path, newlyTodos }) => {
   const [openEditModal, setOpenEditModal] = useState(false);
   const [todoForEdit, setTodoForEdit] = useState({});
   const { putTask, deleteTask } = useTodoContext();
   const router = useRouter();
   const handleChevronR = (id) => {
-    putTask(id, { status: 1 });
+    putTask(path, id, { status: 1 });
   };
 
   const handleEdit = (todo) => {
@@ -58,7 +58,7 @@ const NewTasks = ({ newlyTodos }) => {
 
                   <button
                     className="rounded-full p-1 hover:bg-white active:bg-slate-100"
-                    onClick={() => deleteTask(todo?.id)}
+                    onClick={() => deleteTask(path,todo?.id)}
                   >
                     <DeleteIcon />
                   </button>
@@ -84,6 +84,7 @@ const NewTasks = ({ newlyTodos }) => {
         open={openEditModal}
         setOpen={setOpenEditModal}
         todo={todoForEdit}
+        path={path}
       />
     </>
   );

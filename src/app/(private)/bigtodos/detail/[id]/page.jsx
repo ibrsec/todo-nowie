@@ -8,10 +8,9 @@ import { usePathname } from "next/navigation";
 
 const DetailTodo = ({ params }) => {
 
-const path = "todos";
+const path = "bigTodos";
   const { allTodos, getTodos,putTask } = useTodoContext();
   useEffect(() => {
-    const path = "todos";
     getTodos(path);
   }, []);
   // console.log(allTodos);

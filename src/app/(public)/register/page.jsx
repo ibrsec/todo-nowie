@@ -33,7 +33,7 @@ const RegisterPage = () => {
         <div className="relative px-4 py-10 bg-violet-200 shadow-lg sm:rounded-3xl sm:p-20">
           <div className="max-w-md mx-auto">
             <div>
-              <h1 className="text-2xl font-semibold text-violet-700">Register</h1>
+              <h1 className="text-2xl font-semibold text-violet-700" data-test="register-header">Register</h1>
             </div>
             <div className="divide-y divide-gray-200">
               <form
@@ -51,6 +51,7 @@ const RegisterPage = () => {
                     placeholder="Username"
                     value={inputInfos.username}
                     onChange={handleChange}
+                    data-test="register-username-input"
                   />
                   <label
                     htmlFor="email"
@@ -70,6 +71,8 @@ const RegisterPage = () => {
                     placeholder="Image url"
                     value={inputInfos.imageUrl}
                     onChange={handleChange}
+
+                    data-test="register-imageurl-input"
                   />
                   <label
                     htmlFor="password"
@@ -89,6 +92,7 @@ const RegisterPage = () => {
                     placeholder="Image url"
                     value={inputInfos.email}
                     onChange={handleChange}
+                    data-test="register-email-input"
                   />
                   <label
                     htmlFor="password"
@@ -108,6 +112,7 @@ const RegisterPage = () => {
                     placeholder="Image url"
                     value={inputInfos.password}
                     onChange={handleChange}
+                    data-test="register-password-input"
                   />
                   <label
                     htmlFor="password"
@@ -120,6 +125,7 @@ const RegisterPage = () => {
                   <button
                     type="submit"
                     className="w-[280px] text-md  bg-violet-500 text-white hover:bg-violet-950  transition-all rounded-md px-2 py-3 "
+                    data-test="register-submit"
                   >
                     Submit
                   </button>
