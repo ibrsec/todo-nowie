@@ -21,6 +21,10 @@ const DetailTodo = ({ params }) => {
   const selectedTodo = allTodos?.filter((todo) => todo.id === params.id)[0];
   // console.log("selectedtodo = ", selectedTodo);
 
+  const handleMakeTodaysTodo = async(stepName) => {
+    await postNewTask("todos", currentUser, stepName);
+    getTodos(path);
+  }
   return (
     <div className="container mx-auto">
       <h3 className="text-3xl text-center font-semibold my-5 px-2">
@@ -80,10 +84,7 @@ const DetailTodo = ({ params }) => {
               <ToolTip tooltip="Make Today's Todo">
                 <button
                   className="bg-violet-200 rounded-full p-1 cursor-pointer hover:bg-violet-100 active:bg-violet-300"
-                  onClick={async() => {
-                    await postNewTask("todos", currentUser, item?.stepName);
-                    getTodos(path);
-                  }}
+                  onClick={()=>handleMakeTodaysTodo(item?.stepName)}
                 >
                   <ToCopy className="" />
                 </button>

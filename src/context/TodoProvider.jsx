@@ -51,7 +51,7 @@ const TodoProvider = ({ children }) => {
       toastSuccess("Posted a new task successfully");
       const bodyJson = await response.json();
       // console.log("bodyJson", bodyJson);
-      getTodos(path);
+      await getTodos(path);
     } catch (error) {
       toastError("Post a new task is failed!");
       console.log("Post a new task = ", error);
