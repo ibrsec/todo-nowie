@@ -1,14 +1,20 @@
 // "use client";
 
 import DetailIcon from "@/assets/icons/DetailIcon";
+import ToCopy from "@/assets/icons/ToCopy";
 import ToolTip from "@/components/Tooltip";
+import { useTodoContext } from "@/context/TodoProvider";
 import { useRouter } from "next/navigation";
 
-const SelectedTasksComp = ({ selectedDate, selectedTasks }) => {
+const SelectedTasksComp = ({ path,selectedDate, selectedTasks }) => {
   const newlyTodos = selectedTasks?.filter((todo) => todo.status === 0);
   const inprogressTodos = selectedTasks?.filter((todo) => todo.status === 1);
   const completedTodos = selectedTasks?.filter((todo) => todo.status === 2);
   const router = useRouter();
+
+ 
+  const isTodaysTodo  = selectedDate === new Date().toLocaleDateString("tr-TR");
+  const {putTask} = useTodoContext();
   return (
     <div>
       <div className="newTasks bg-violet-200 rounded-lg py-2 px-3 h-auto  ">
@@ -30,7 +36,7 @@ const SelectedTasksComp = ({ selectedDate, selectedTasks }) => {
                       <DetailIcon className="" />
                     </button>
                   </ToolTip>
-                  <div className="flex-grow">
+                  <div className="flex-grow flex items-center gap-5">
                     <ToolTip
                       tooltip={
                         "Steps: " +
@@ -43,6 +49,14 @@ const SelectedTasksComp = ({ selectedDate, selectedTasks }) => {
                         {todo?.taskName}
                       </span>
                     </ToolTip>
+                    <ToolTip tooltip="Make Today's Todo">
+                    <button
+                      className="rounded-full p-1 hover:bg-white active:bg-slate-100"
+                      onClick={() => putTask(path,todo?.id,{createdAt:new Date()})}
+                    >
+                      <ToCopy className="" />
+                    </button>
+                  </ToolTip>
                   </div>
                 </div>
               ))
@@ -57,7 +71,7 @@ const SelectedTasksComp = ({ selectedDate, selectedTasks }) => {
             <h6 className="font-semibold text-blue-800">Inprogress Todos</h6>
             {inprogressTodos?.length > 0 ? (
               inprogressTodos?.map((todo) => (
-                <div key={todo?.id} className="task flex items-center ">
+                <div key={todo?.id} className="task flex items-center gap-5 ">
                   <ToolTip tooltip="Detail Page">
                     <button
                       className="rounded-full p-1 hover:bg-white active:bg-slate-100"
@@ -66,7 +80,7 @@ const SelectedTasksComp = ({ selectedDate, selectedTasks }) => {
                       <DetailIcon className="" />
                     </button>
                   </ToolTip>
-                  <div className="flex-grow">
+                  <div className="flex-grow flex items-center gap-5">
                     <ToolTip
                       tooltip={
                         "Steps: " +
@@ -79,6 +93,18 @@ const SelectedTasksComp = ({ selectedDate, selectedTasks }) => {
                         {todo?.taskName}
                       </span>
                     </ToolTip>
+
+                    {
+                      isTodaysTodo ||
+                  <ToolTip tooltip="Make Today's Todo">
+                    <button
+                      className="rounded-full p-1 hover:bg-white active:bg-slate-100"
+                      onClick={() => putTask(path,todo?.id,{createdAt:new Date()})}
+                    >
+                      <ToCopy className="" />
+                    </button>
+                  </ToolTip>
+                    }
                   </div>
                 </div>
               ))

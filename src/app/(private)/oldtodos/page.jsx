@@ -53,6 +53,7 @@ const OldTodosPage = () => {
       <SelectedTasksComp
         selectedDate={selectedDate}
         selectedTasks={selectedTasks}
+        path={path}
       />
       
     </div>
